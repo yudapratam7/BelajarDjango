@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+    />
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+    ></script>
+    <title>My First Django</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+</head>
+<body>
+    <div class="container my-5">
+        <div class="jumbotron text-center py-4">
+            <h1 class="display-4">Hello! Welcome to My Django App</h1>
+            <hr class="my-4">
+            <h2>Click <a href="/formpage" class="btn btn-primary btn-sm">here</a> to go to the Form Page!</h2>
+            <p class="mt-4">This is my picture:</p>
+            <img src="{% static 'images/django.png' %}" alt="logo django" class="rounded-circle img-thumbnail" width="200">
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Access Records</h2>
+        {% if access_records %}
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Username</th>
+                        <th>Site Name</th>
+                        <th>Date Accessed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acc in access_records %}
+                        <tr>
+                            <td>{{ acc.name.name }}</td> <!-- Access the Webpage name -->
+                            <td>{{ acc.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-center text-muted">No access records found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
